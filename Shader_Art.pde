@@ -17,24 +17,27 @@ void draw() {
     }
   }
   
-  time += 0.1;
+  time += 0.05;
 }
 
 fColour mainImage(float x, float y) {
   fColour finalColour = new fColour();
   x = (x - 0.5) * sizeRatio * fracts ; y = (y - 0.5) * 2 * fracts;
   float x0 = x; float y0 = y;
-  x = fract(x) - 0.5; y = fract(y) - 0.5;
   
-  float d = length(x, y);
-  fColour colour = palette(length(x0, y0) + time);
-  
-  d = sin(d * 8 + time) / 8;
-  d = abs(d);
-  d = 0.02 / d;
-  colour.mult(d);
-  
-  finalColour.add(colour);
+  for (int i = 0; i < 3; i++) {
+    x = fract(x) - 0.5; y = fract(y) - 0.5;
+    
+    float d = length(x, y);
+    fColour colour = palette(length(x0, y0) + time);
+    
+    d = sin(d * 8 + time) / 8;
+    d = abs(d);
+    d = 0.02 / d;
+    colour.mult(d);
+    
+    finalColour.add(colour);
+  }
   
   return finalColour;
 }
