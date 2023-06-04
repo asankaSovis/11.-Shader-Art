@@ -50,10 +50,6 @@ float smoothStep(float edge0, float edge1, float x) {
   return t * t * (3 - 2 * t);
 }
 
-float fract(float value) {
-  return value - floor(value);
-}
-
 fColour palette(float t) {
   fColour a = new fColour(0.5, 0.5, 0.5);
   fColour b = new fColour(0.5, 0.5, 0.5);
