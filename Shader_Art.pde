@@ -18,6 +18,7 @@ void draw() {
   }
   
   time += 0.05;
+  saveFrame("Output\\Shader_Art-" + frameCount + ".png"); // Saves the current frame. Comment if you don't need
 }
 
 fColour mainImage(float x, float y) {
@@ -29,11 +30,11 @@ fColour mainImage(float x, float y) {
     x = fract(x * 1.5) - 0.5; y = fract(y * 1.5) - 0.5;
     
     float d = length(x, y) * exp(-length(x0, y0));
-    fColour colour = palette(length(x0, y0) + (i * 0.4) + time);
+    fColour colour = palette(length(x0, y0) + (i * 0.1) + time);
     
     d = sin(d * 8 + time) / 8;
     d = abs(d);
-    d = pow(0.03 / d, 1.2);
+    d = pow(0.03 / d, 2);
     colour.mult(d);
     
     finalColour.add(colour);
