@@ -1,4 +1,5 @@
 float sizeRatio = 0;
+int fracts = 2;
 float time = 0;
 
 void setup() {
@@ -20,15 +21,20 @@ void draw() {
 }
 
 fColour mainImage(float x, float y) {
-  x = (x - 0.5) * sizeRatio; y = (y - 0.5) * 2;
+  fColour finalColour = new fColour();
+  x = (x - 0.5) * sizeRatio * fracts ; y = (y - 0.5) * 2 * fracts;
+  float x0 = x; float y0 = y;
+  x = fract(x) - 0.5; y = fract(y) - 0.5;
   
   float d = length(x, y);
-  fColour colour = palette(d + time);
+  fColour colour = palette(length(x0, y0) + time);
   
   d = sin(d * 8 + time) / 8;
   d = abs(d);
   d = 0.02 / d;
   colour.mult(d);
   
-  return colour;
+  finalColour.add(colour);
+  
+  return finalColour;
 }
