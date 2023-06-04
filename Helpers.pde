@@ -13,8 +13,16 @@ class fColour {
     C[0] = i; C[1] = i; C[2] = i; C[3] = 1;
   }
   
+  fColour() {
+    C[0] = 0; C[1] = 0; C[2] = 0; C[3] = 1;
+  }
+  
   color toColour() {
     return color(C[0] * 255, C[1] * 255, C[2] * 255, C[3] * 255);
+  }
+  
+  void add(fColour colour) {
+    C[0] += colour.C[0]; C[1] += colour.C[1]; C[2] += colour.C[2];
   }
   
   void mult(float value) {
@@ -40,6 +48,10 @@ float smoothStep(float edge0, float edge1, float x) {
   
   // Smooth the step using Hermite interpolation
   return t * t * (3 - 2 * t);
+}
+
+float fract(float value) {
+  return value - floor(value);
 }
 
 fColour palette(float t) {
